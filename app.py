@@ -44,4 +44,4 @@ def signup():
     return render_template('signup.html', form=form)
 
 if __name__ == "__main__":
-    app.run(port=80, host='0.0.0.0')
+    app.run(port=5000, host='0.0.0.0')
