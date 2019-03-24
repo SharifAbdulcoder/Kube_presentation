@@ -33,5 +33,13 @@ spec:
         - /app/app.py
         command:
         - python
-        image: sharifabdulcoder/flapp:latest
+        image: sharifabdulcoder/flapp:v2
         name: flapp
+        # livenessProbe:
+        #   httpGet:
+        #     path: /healthy
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 1
+        #   periodSeconds: 10
+        #   failureThreshold: 3

@@ -1,4 +1,4 @@
-from  flask import Flask, render_template
+from  flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
@@ -6,7 +6,7 @@ from wtforms.validators import InputRequired, Email, Length
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from healthcheck import HealthCheck, EnvironmentDump
+#from healthcheck import HealthCheck
 
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@host/database'
@@ -14,9 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://flask-user:Redhat2019**@165.227
 app.config['SECRET_KEY'] = 'mylittlewinky_77>hallaluya'
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
-health = HealthCheck(app, "/healthy")
-envdump = EnvironmentDump(app, "/environment")
-
+#health = HealthCheck(app, "/healthy")
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,6 +34,10 @@ class RegisterForm(FlaskForm):
 def index():
     return "Hello World"
 
+@app.route('/healthy', methods=['GET'])
+def healthy():
+    return jsonify({'message': 'ok'})
+
 @app.route("/signup", methods=['GET','POST'])
 def signup():
     form = RegisterForm()
@@ -47,4 +49,4 @@ def signup():
     return render_template('signup.html', form=form)
 
 if __name__ == "__main__":
-    app.run(port=5000, host='0.0.0.0')
+    app.run(port=5000, host='0.0.0.0', debug=True)
