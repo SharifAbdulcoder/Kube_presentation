@@ -50,5 +50,5 @@ spec:
           protocol: TCP
           containerPort: 80
         - name: app-port
-          protocol: TCP 
+          protocol: TCP
           containerPort: 5000
