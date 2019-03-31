@@ -15,5 +15,3 @@ Flask-SQLAlchemy==2.3.2
 mysqlclient
 Flask-WTF==0.14.2
 pusher==2.0.1
-uuids
-Flask-JWT

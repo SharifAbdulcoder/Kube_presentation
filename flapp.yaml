@@ -33,5 +33,22 @@ spec:
         - /app/app.py
         command:
         - python
-        image: sharifabdulcoder/flapp:latest
+        image: sharifabdulcoder/flapp:v3
         name: flapp
+        livenessProbe:
+          tcpSocket:
+            port: 5000
+            #httpGet:
+            #path: /healthy
+            #port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 5
+        ports:
+        - name: livnessprobe
+          protocol: TCP
+          containerPort: 80
+        - name: app-port
+          protocol: TCP 
+          containerPort: 5000
