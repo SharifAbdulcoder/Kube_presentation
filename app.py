@@ -1,4 +1,4 @@
-from  flask import Flask, render_template, jsonify, redirect
+from  flask import Flask, render_template, jsonify, redirect, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
@@ -11,10 +11,12 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@host/database'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://flask-user:Redhat2019**@165.227.177.17/flask-user'
-app.config['SECRET_KEY'] = 'mylittlewinky_77>hallaluya'
-bootstrap = Bootstrap(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://flask-user:Redhat2019**@165.227.177.17/flask-user'
+# app.config['SECRET_KEY'] = 'mylittlewinky_77>hallaluya'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/database.db'
 db = SQLAlchemy(app)
+
+bootstrap = Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -89,7 +91,6 @@ def login():
 
     return render_template('dashboard.html', form=form)
     #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
-
 
 ########################DASHBOARD#######################
 
