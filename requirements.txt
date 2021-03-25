@@ -96,7 +96,7 @@ python-language-server==0.25.0
 python-socketio==3.0.1
 pytz==2018.7
 pywinrm==0.3.0
-PyYAML==3.13
+PyYAML==5.4
 requests==2.19.1
 requests-ntlm==1.1.0
 requests-oauthlib==1.0.0
